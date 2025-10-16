@@ -1,508 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spring Boot Microservice Demo</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
-            background-color: #f9f9f9;
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .section {
-            background: white;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border: 1px solid #e0e0e0;
-        }
-
-        .section h2 {
-            color: #4CAF50;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 0.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #555;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #4CAF50;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-right: 0.5rem;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        button.success {
-            background-color: #28a745;
-        }
-
-        button.success:hover {
-            background-color: #218838;
-        }
-
-        button.danger {
-            background-color: #dc3545;
-        }
-
-        button.danger:hover {
-            background-color: #c82333;
-        }
-
-        .display-area {
-            background-color: #f5f5f5;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 1rem;
-            margin-top: 1rem;
-            min-height: 60px;
-        }
-
-        .display-area h3 {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-        }
-
-        .display-value {
-            font-size: 1.2rem;
-            color: #333;
-            font-weight: 600;
-        }
-
-        .items-list {
-            list-style: none;
-            background-color: #f5f5f5;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 1rem;
-            margin-top: 1rem;
-            min-height: 100px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .items-list li {
-            padding: 0.5rem;
-            border-bottom: 1px solid #ddd;
-            background-color: white;
-            margin-bottom: 0.5rem;
-            border-radius: 3px;
-        }
-
-        .items-list li:last-child {
-            margin-bottom: 0;
-        }
-
-        .item-count {
-            font-weight: 600;
-            color: #4CAF50;
-            margin-top: 0.5rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .message {
-            padding: 0.75rem;
-            border-radius: 4px;
-            margin-top: 1rem;
-            display: none;
-        }
-
-        .message.success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            display: block;
-        }
-
-        .message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            display: block;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-    </style>
+    <title>Простой сайт</title>
+    <!-- Подключаем файл со стилями -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>🚀 Spring Boot Microservice Demo</h1>
-        <p>REST API for Primitives and Collections</p>
-    </header>
 
+    <!-- Основной контейнер -->
     <div class="container">
-        <!-- Primitives Section -->
-        <section class="section">
-            <h2>📊 Primitives Management</h2>
+        
+        <!-- Секция 1: Работа с числами и текстом -->
+        <div class="box">
+            <h2>Работа с данными</h2>
             
-            <div class="grid">
-                <!-- Number Management -->
-                <div>
-                    <div class="form-group">
-                        <label for="numberInput">Number Value:</label>
-                        <input type="number" id="numberInput" placeholder="Enter a number">
-                    </div>
-                    <div class="button-group">
-                        <button onclick="addNumber()">Add Number</button>
-                        <button class="success" onclick="getNumber()">Get Number</button>
-                    </div>
-                    <div class="display-area" id="numberDisplay">
-                        <h3>Stored Number:</h3>
-                        <div class="display-value" id="numberValue">Not set</div>
-                    </div>
-                </div>
-
-                <!-- String Management -->
-                <div>
-                    <div class="form-group">
-                        <label for="stringInput">String Value:</label>
-                        <input type="text" id="stringInput" placeholder="Enter a string">
-                    </div>
-                    <div class="button-group">
-                        <button onclick="addString()">Add String</button>
-                        <button class="success" onclick="getString()">Get String</button>
-                    </div>
-                    <div class="display-area" id="stringDisplay">
-                        <h3>Stored String:</h3>
-                        <div class="display-value" id="stringValue">Not set</div>
-                    </div>
-                </div>
-
-                <!-- Boolean Management -->
-                <div>
-                    <div class="form-group">
-                        <label for="booleanInput">Boolean Value:</label>
-                        <select id="booleanInput">
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                        </select>
-                    </div>
-                    <div class="button-group">
-                        <button onclick="addBoolean()">Add Boolean</button>
-                        <button class="success" onclick="getBoolean()">Get Boolean</button>
-                    </div>
-                    <div class="display-area" id="booleanDisplay">
-                        <h3>Stored Boolean:</h3>
-                        <div class="display-value" id="booleanValue">Not set</div>
-                    </div>
-                </div>
+            <!-- Число -->
+            <div class="section">
+                <h3>Число:</h3>
+                <input type="number" id="numberInput" placeholder="Введите число">
+                <button onclick="saveNumber()">Сохранить</button>
+                <button onclick="showNumber()">Показать</button>
+                <p>Сохраненное число: <span id="numberResult">-</span></p>
             </div>
-        </section>
 
-        <!-- Collections Section -->
-        <section class="section">
-            <h2>📋 Collections Management</h2>
+            <!-- Текст -->
+            <div class="section">
+                <h3>Текст:</h3>
+                <input type="text" id="textInput" placeholder="Введите текст">
+                <button onclick="saveText()">Сохранить</button>
+                <button onclick="showText()">Показать</button>
+                <p>Сохраненный текст: <span id="textResult">-</span></p>
+            </div>
+
+            <!-- Истина/Ложь -->
+            <div class="section">
+                <h3>Истина/Ложь:</h3>
+                <select id="booleanInput">
+                    <option value="true">Да</option>
+                    <option value="false">Нет</option>
+                </select>
+                <button onclick="saveBoolean()">Сохранить</button>
+                <button onclick="showBoolean()">Показать</button>
+                <p>Сохраненное значение: <span id="booleanResult">-</span></p>
+            </div>
+        </div>
+
+        <!-- Секция 2: Работа со списком -->
+        <div class="box">
+            <h2>Мой список</h2>
             
-            <div class="form-group">
-                <label for="itemInput">Add Item to Collection:</label>
-                <input type="text" id="itemInput" placeholder="Enter an item">
+            <input type="text" id="itemInput" placeholder="Введите элемент списка">
+            <button onclick="addToList()">Добавить</button>
+            <button onclick="showList()">Показать список</button>
+            <button class="delete" onclick="clearList()">Очистить все</button>
+            
+            <p id="message"></p>
+            
+            <div id="listContainer">
+                <p>Список пуст</p>
             </div>
             
-            <div class="button-group">
-                <button onclick="addItem()">Add Item</button>
-                <button class="success" onclick="getItems()">Refresh List</button>
-                <button class="danger" onclick="clearItems()">Clear All Items</button>
-            </div>
-
-            <div id="itemMessage" class="message"></div>
-
-            <div class="items-list" id="itemsList">
-                <em>No items in collection</em>
-            </div>
-            <div class="item-count" id="itemCount">Total Items: 0</div>
-        </section>
+            <p>Всего элементов: <span id="itemCount">0</span></p>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Spring Boot Demo | Simple REST API with KISS Principle</p>
-    </footer>
-
-    <script>
-        const API_BASE = '/api';
-
-        // Number operations
-        async function addNumber() {
-            const value = parseInt(document.getElementById('numberInput').value);
-            if (isNaN(value)) {
-                alert('Please enter a valid number');
-                return;
-            }
-
-            try {
-                const response = await fetch(`${API_BASE}/primitives/number`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ value: value })
-                });
-
-                const data = await response.json();
-                document.getElementById('numberValue').textContent = data.value;
-                document.getElementById('numberInput').value = '';
-            } catch (error) {
-                console.error('Error adding number:', error);
-                alert('Error adding number');
-            }
-        }
-
-        async function getNumber() {
-            try {
-                const response = await fetch(`${API_BASE}/primitives/number`);
-                const data = await response.json();
-                document.getElementById('numberValue').textContent = 
-                    data.value !== null ? data.value : 'Not set';
-            } catch (error) {
-                console.error('Error getting number:', error);
-                alert('Error getting number');
-            }
-        }
-
-        // String operations
-        async function addString() {
-            const value = document.getElementById('stringInput').value;
-            if (!value.trim()) {
-                alert('Please enter a string');
-                return;
-            }
-
-            try {
-                const response = await fetch(`${API_BASE}/primitives/string`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ value: value })
-                });
-
-                const data = await response.json();
-                document.getElementById('stringValue').textContent = data.value;
-                document.getElementById('stringInput').value = '';
-            } catch (error) {
-                console.error('Error adding string:', error);
-                alert('Error adding string');
-            }
-        }
-
-        async function getString() {
-            try {
-                const response = await fetch(`${API_BASE}/primitives/string`);
-                const data = await response.json();
-                document.getElementById('stringValue').textContent = 
-                    data.value !== null ? data.value : 'Not set';
-            } catch (error) {
-                console.error('Error getting string:', error);
-                alert('Error getting string');
-            }
-        }
-
-        // Boolean operations
-        async function addBoolean() {
-            const value = document.getElementById('booleanInput').value === 'true';
-
-            try {
-                const response = await fetch(`${API_BASE}/primitives/boolean`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ value: value })
-                });
-
-                const data = await response.json();
-                document.getElementById('booleanValue').textContent = data.value;
-            } catch (error) {
-                console.error('Error adding boolean:', error);
-                alert('Error adding boolean');
-            }
-        }
-
-        async function getBoolean() {
-            try {
-                const response = await fetch(`${API_BASE}/primitives/boolean`);
-                const data = await response.json();
-                document.getElementById('booleanValue').textContent = 
-                    data.value !== null ? data.value : 'Not set';
-            } catch (error) {
-                console.error('Error getting boolean:', error);
-                alert('Error getting boolean');
-            }
-        }
-
-        // Collection operations
-        async function addItem() {
-            const item = document.getElementById('itemInput').value;
-            if (!item.trim()) {
-                alert('Please enter an item');
-                return;
-            }
-
-            try {
-                const response = await fetch(`${API_BASE}/collections/items`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ item: item })
-                });
-
-                const data = await response.json();
-                showMessage(`${data.message} - Total items: ${data.totalItems}`, 'success');
-                document.getElementById('itemInput').value = '';
-                await getItems();
-            } catch (error) {
-                console.error('Error adding item:', error);
-                showMessage('Error adding item', 'error');
-            }
-        }
-
-        async function getItems() {
-            try {
-                const response = await fetch(`${API_BASE}/collections/items`);
-                const data = await response.json();
-                
-                const itemsList = document.getElementById('itemsList');
-                const itemCount = document.getElementById('itemCount');
-
-                if (data.items.length === 0) {
-                    itemsList.innerHTML = '<em>No items in collection</em>';
-                } else {
-                    itemsList.innerHTML = data.items
-                        .map((item, index) => `<li>${index + 1}. ${item}</li>`)
-                        .join('');
-                }
-
-                itemCount.textContent = `Total Items: ${data.count}`;
-            } catch (error) {
-                console.error('Error getting items:', error);
-                alert('Error getting items');
-            }
-        }
-
-        async function clearItems() {
-            if (!confirm('Are you sure you want to clear all items?')) {
-                return;
-            }
-
-            try {
-                const response = await fetch(`${API_BASE}/collections/items`, {
-                    method: 'DELETE'
-                });
-
-                const data = await response.json();
-                showMessage(data.message, 'success');
-                await getItems();
-            } catch (error) {
-                console.error('Error clearing items:', error);
-                showMessage('Error clearing items', 'error');
-            }
-        }
-
-        function showMessage(message, type) {
-            const messageEl = document.getElementById('itemMessage');
-            messageEl.textContent = message;
-            messageEl.className = `message ${type}`;
-            
-            setTimeout(() => {
-                messageEl.className = 'message';
-            }, 3000);
-        }
-
-        // Load initial data on page load
-        window.onload = function() {
-            getNumber();
-            getString();
-            getBoolean();
-            getItems();
-        };
-    </script>
+    <!-- Подключаем файл со скриптами -->
+    <script src="script.js"></script>
 </body>
 </html>

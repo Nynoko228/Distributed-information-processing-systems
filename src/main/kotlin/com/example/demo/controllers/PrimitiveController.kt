@@ -4,7 +4,7 @@ import com.example.demo.models.*
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/primitives")
+@RequestMapping("/Lab1/primitives")
 class PrimitiveController {
 
     // In-memory storage for primitive values

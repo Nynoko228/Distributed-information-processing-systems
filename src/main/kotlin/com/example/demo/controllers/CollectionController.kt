@@ -4,7 +4,7 @@ import com.example.demo.models.*
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/collections")
+@RequestMapping("/Lab1/collections")
 class CollectionController {
 
     // In-memory storage for collection items
