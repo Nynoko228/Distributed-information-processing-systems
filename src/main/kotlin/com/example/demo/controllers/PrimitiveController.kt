@@ -3,15 +3,17 @@ package com.example.demo.controllers
 import com.example.demo.models.*
 import org.springframework.web.bind.annotation.*
 
+// Контроллер для работы с примитивными типами данных
 @RestController
-@RequestMapping("/Lab1/primitives")
+@RequestMapping("/api/primitives")
 class PrimitiveController {
 
-    // In-memory storage for primitive values
+    // Хранилище для примитивных значений в памяти
     private var storedNumber: Int? = null
     private var storedString: String? = null
     private var storedBoolean: Boolean? = null
 
+    // Метод для сохранения числа
     @PostMapping("/number")
     fun addNumber(@RequestBody request: NumberRequest): AddNumberResponse {
         storedNumber = request.value
@@ -21,11 +23,13 @@ class PrimitiveController {
         )
     }
 
+    // Метод для получения сохраненного числа
     @GetMapping("/number")
     fun getNumber(): NumberResponse {
         return NumberResponse(value = storedNumber)
     }
 
+    // Метод для сохранения строки
     @PostMapping("/string")
     fun addString(@RequestBody request: StringRequest): AddStringResponse {
         storedString = request.value
@@ -35,11 +39,13 @@ class PrimitiveController {
         )
     }
 
+    // Метод для получения сохраненной строки
     @GetMapping("/string")
     fun getString(): StringResponse {
         return StringResponse(value = storedString)
     }
 
+    // Метод для сохранения логического значения
     @PostMapping("/boolean")
     fun addBoolean(@RequestBody request: BooleanRequest): AddBooleanResponse {
         storedBoolean = request.value
@@ -49,6 +55,7 @@ class PrimitiveController {
         )
     }
 
+    // Метод для получения сохраненного логического значения
     @GetMapping("/boolean")
     fun getBoolean(): BooleanResponse {
         return BooleanResponse(value = storedBoolean)
