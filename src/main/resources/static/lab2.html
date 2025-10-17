@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная №2 - База данных видеоигр</title>
+    <link rel="stylesheet" href="lab2Style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Управление каталогом видеоигр</h1>
+        <a href="index.html" class="back-link">← Назад к списку лабораторных</a>
+    </div>
+
+    <div class="container">
+        <!-- Навигационные табы -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('games')">Видеоигры</button>
+            <button class="tab-button" onclick="switchTab('developers')">Разработчики</button>
+            <button class="tab-button" onclick="switchTab('publishers')">Издатели</button>
+            <button class="tab-button" onclick="switchTab('genres')">Жанры</button>
+        </div>
+
+        <!-- Вкладка: Видеоигры -->
+        <div id="gamesTab" class="tab-content active">
+            <div class="section">
+                <h2>Управление видеоиграми</h2>
+                
+                <!-- Форма добавления игры -->
+                <div class="form-box">
+                    <h3>Добавить новую игру</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Название игры:</label>
+                            <input type="text" id="gameTitle" placeholder="Например: The Witcher 3">
+                        </div>
+                        <div class="form-group">
+                            <label>Год выпуска:</label>
+                            <input type="number" id="gameYear" placeholder="2015" min="1970" max="2100">
+                        </div>
+                        <div class="form-group">
+                            <label>Цена ($):</label>
+                            <input type="number" id="gamePrice" placeholder="39.99" step="0.01" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Разработчик:</label>
+                            <select id="gameDeveloper">
+                                <option value="">Выберите разработчика</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Издатель:</label>
+                            <select id="gamePublisher">
+                                <option value="">Выберите издателя</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Жанр:</label>
+                            <select id="gameGenre">
+                                <option value="">Выберите жанр</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="createGame()">Добавить игру</button>
+                    <p id="gameMessage" class="message"></p>
+                </div>
+
+                <!-- Фильтры -->
+                <div class="filters-box">
+                    <h3>Фильтры</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Жанр:</label>
+                            <select id="filterGenre" onchange="loadGames()">
+                                <option value="">Все жанры</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Разработчик:</label>
+                            <select id="filterDeveloper" onchange="loadGames()">
+                                <option value="">Все разработчики</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Год выпуска:</label>
+                            <input type="number" id="filterYear" placeholder="Год" onchange="loadGames()">
+                        </div>
+                        <div class="form-group">
+                            <label>Мин. цена:</label>
+                            <input type="number" id="filterMinPrice" placeholder="0" step="0.01" onchange="loadGames()">
+                        </div>
+                        <div class="form-group">
+                            <label>Макс. цена:</label>
+                            <input type="number" id="filterMaxPrice" placeholder="100" step="0.01" onchange="loadGames()">
+                        </div>
+                    </div>
+                    <button class="btn-secondary" onclick="clearFilters()">Сбросить фильтры</button>
+                </div>
+
+                <!-- Список игр -->
+                <div class="list-box">
+                    <div class="list-header">
+                        <h3>Список игр</h3>
+                        <button class="btn-refresh" onclick="loadGames()">Обновить</button>
+                    </div>
+                    <div id="gamesList" class="items-list">
+                        <p class="loading">Загрузка...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вкладка: Разработчики -->
+        <div id="developersTab" class="tab-content">
+            <div class="section">
+                <h2>Управление разработчиками</h2>
+                
+                <div class="form-box">
+                    <h3>Добавить разработчика</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Название компании:</label>
+                            <input type="text" id="devName" placeholder="Например: CD Projekt Red">
+                        </div>
+                        <div class="form-group">
+                            <label>Страна:</label>
+                            <input type="text" id="devCountry" placeholder="Например: Poland">
+                        </div>
+                        <div class="form-group">
+                            <label>Год основания:</label>
+                            <input type="number" id="devYear" placeholder="1994" min="1950">
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="createDeveloper()">Добавить разработчика</button>
+                    <p id="devMessage" class="message"></p>
+                </div>
+
+                <div class="list-box">
+                    <div class="list-header">
+                        <h3>Список разработчиков</h3>
+                        <button class="btn-refresh" onclick="loadDevelopers()">Обновить</button>
+                    </div>
+                    <div id="developersList" class="items-list">
+                        <p class="loading">Загрузка...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вкладка: Издатели -->
+        <div id="publishersTab" class="tab-content">
+            <div class="section">
+                <h2>Управление издателями</h2>
+                
+                <div class="form-box">
+                    <h3>Добавить издателя</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Название компании:</label>
+                            <input type="text" id="pubName" placeholder="Например: CD Projekt">
+                        </div>
+                        <div class="form-group">
+                            <label>Страна:</label>
+                            <input type="text" id="pubCountry" placeholder="Например: Poland">
+                        </div>
+                        <div class="form-group">
+                            <label>Год основания:</label>
+                            <input type="number" id="pubYear" placeholder="1994" min="1950">
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="createPublisher()">Добавить издателя</button>
+                    <p id="pubMessage" class="message"></p>
+                </div>
+
+                <div class="list-box">
+                    <div class="list-header">
+                        <h3>Список издателей</h3>
+                        <button class="btn-refresh" onclick="loadPublishers()">Обновить</button>
+                    </div>
+                    <div id="publishersList" class="items-list">
+                        <p class="loading">Загрузка...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вкладка: Жанры -->
+        <div id="genresTab" class="tab-content">
+            <div class="section">
+                <h2>Управление жанрами</h2>
+                
+                <div class="form-box">
+                    <h3>Добавить жанр</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Название жанра:</label>
+                            <input type="text" id="genreName" placeholder="Например: RPG">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Описание:</label>
+                            <textarea id="genreDesc" placeholder="Описание жанра" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="createGenre()">Добавить жанр</button>
+                    <p id="genreMessage" class="message"></p>
+                </div>
+
+                <div class="list-box">
+                    <div class="list-header">
+                        <h3>Список жанров</h3>
+                        <button class="btn-refresh" onclick="loadGenres()">Обновить</button>
+                    </div>
+                    <div id="genresList" class="items-list">
+                        <p class="loading">Загрузка...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно редактирования игры -->
+    <div id="editGameModal" class="modal">
+        <div class="modal-content">
+            <h3>Редактировать игру</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Название:</label>
+                    <input type="text" id="editGameTitle">
+                </div>
+                <div class="form-group">
+                    <label>Год выпуска:</label>
+                    <input type="number" id="editGameYear" min="1970" max="2100">
+                </div>
+                <div class="form-group">
+                    <label>Цена ($):</label>
+                    <input type="number" id="editGamePrice" step="0.01" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Разработчик:</label>
+                    <select id="editGameDeveloper"></select>
+                </div>
+                <div class="form-group">
+                    <label>Издатель:</label>
+                    <select id="editGamePublisher"></select>
+                </div>
+                <div class="form-group">
+                    <label>Жанр:</label>
+                    <select id="editGameGenre"></select>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-primary" onclick="updateGame()">Сохранить</button>
+                <button class="btn-secondary" onclick="closeEditModal()">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="lab2Script.js"></script>
+</body>
+</html>
