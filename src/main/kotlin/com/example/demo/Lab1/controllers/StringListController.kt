@@ -1,11 +1,11 @@
-package com.example.demo.controllers
+package com.example.demo.Lab1.controllers
 
-import com.example.demo.models.*
+import com.example.demo.Lab1.models.*
 import org.springframework.web.bind.annotation.*
 
 // Контроллер для работы со списком строк (List<String>)
 @RestController
-@RequestMapping("/api/collections/strings")
+@RequestMapping("/lab1/collections/strings")
 class StringListController {
 
     // Хранилище для списка строк

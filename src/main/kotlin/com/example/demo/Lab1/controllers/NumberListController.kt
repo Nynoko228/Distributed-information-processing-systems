@@ -1,11 +1,11 @@
-package com.example.demo.controllers
+package com.example.demo.Lab1.controllers
 
-import com.example.demo.models.*
+import com.example.demo.Lab1.models.*
 import org.springframework.web.bind.annotation.*
 
 // Контроллер для работы со списком чисел (List<Int>)
 @RestController
-@RequestMapping("/api/collections/numbers")
+@RequestMapping("/lab1/collections/numbers")
 class NumberListController {
 
     // Хранилище для списка чисел

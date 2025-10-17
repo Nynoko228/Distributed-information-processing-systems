@@ -1,4 +1,4 @@
-package com.example.demo.models
+package com.example.demo.Lab1.models
 
 // Модели запросов
 data class NumberRequest(val value: Int)

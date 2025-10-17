@@ -1,11 +1,11 @@
-package com.example.demo.controllers
+package com.example.demo.Lab1.controllers
 
-import com.example.demo.models.*
+import com.example.demo.Lab1.models.*
 import org.springframework.web.bind.annotation.*
 
 // Контроллер для работы со списком логических значений (List<Boolean>)
 @RestController
-@RequestMapping("/api/collections/booleans")
+@RequestMapping("/lab1/collections/booleans")
 class BooleanListController {
 
     // Хранилище для списка логических значений

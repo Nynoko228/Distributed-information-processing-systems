@@ -3,138 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Простой сайт</title>
-    <!-- Подключаем файл со стилями -->
-    <link rel="stylesheet" href="style.css">
+    <title>Лабораторные работы</title>
+    <link rel="stylesheet" href="mainStyle.css">
 </head>
 <body>
-
-    <!-- Основной контейнер - два столбца -->
     <div class="container">
-        <div class="two-columns">
+        <h1>Лабораторные работы по программированию</h1>
+        <div class="labs-grid">
+            <a href="lab1.html" class="lab-card">
+                <div class="lab-number">01</div>
+                <div class="lab-title">Лабораторная работа №1</div>
+                <div class="lab-description">Работа с примитивами и коллекциями</div>
+            </a>
             
-            <!-- Левый столбец: Работа с примитивами -->
-            <div>
-                <div class="box">
-                    <h2>Работа с данными</h2>
-                    
-                    <!-- Число -->
-                    <div class="section">
-                        <h3>Число:</h3>
-                        <input type="number" id="numberInput" placeholder="Введите число">
-                        <button onclick="saveNumber()">Сохранить</button>
-                        <button onclick="showNumber()">Показать</button>
-                        <p id="numberResult" class="hidden">Сохраненное число: <span id="numberValue">-</span></p>
-                    </div>
-
-                    <!-- Текст -->
-                    <div class="section">
-                        <h3>Текст:</h3>
-                        <input type="text" id="textInput" placeholder="Введите текст">
-                        <button onclick="saveText()">Сохранить</button>
-                        <button onclick="showText()">Показать</button>
-                        <p id="textResult" class="hidden">Сохраненный текст: <span id="textValue">-</span></p>
-                    </div>
-
-                    <!-- Истина/Ложь -->
-                    <div class="section">
-                        <h3>Истина/Ложь:</h3>
-                        <select id="booleanInput">
-                            <option value="true">Да</option>
-                            <option value="false">Нет</option>
-                        </select>
-                        <button onclick="saveBoolean()">Сохранить</button>
-                        <button onclick="showBoolean()">Показать</button>
-                        <p id="booleanResult" class="hidden">Сохраненное значение: <span id="booleanValue">-</span></p>
-                    </div>
-                </div>
+            <!-- Placeholder для будущих лабораторных работ -->
+            <div class="lab-card disabled">
+                <div class="lab-number">02</div>
+                <div class="lab-title">Лабораторная работа №2</div>
+                <div class="lab-description">Скоро будет доступна</div>
             </div>
-
-            <!-- Правый столбец: Работа с коллекциями -->
-            <div>
-                <!-- Список чисел (List<Int>) -->
-                <div class="box">
-                    <h2>Список чисел (List)</h2>
-                    <input type="number" id="numberListInput" placeholder="Введите число">
-                    <button onclick="addNumberToList()">Добавить</button>
-                    <button onclick="showNumberList()">Показать</button>
-                    <button class="success" onclick="showGetByIndexModal('number')">Получить по индексу</button>
-                    <button class="success" onclick="showAddByIndexModal('number')">Добавить по индексу</button>
-                    <button class="delete" onclick="clearNumberList()">Очистить</button>
-                    <p id="numberListMessage"></p>
-                    <div id="numberListContainer" class="list-container hidden">
-                        <p>Список пуст</p>
-                    </div>
-                    <p id="numberListCountWrapper" class="hidden">Всего чисел: <span id="numberListCount">0</span></p>
-                </div>
-
-                <!-- Список строк (List<String>) -->
-                <div class="box">
-                    <h2>Список строк (List)</h2>
-                    <input type="text" id="stringListInput" placeholder="Введите текст">
-                    <button onclick="addStringToList()">Добавить</button>
-                    <button onclick="showStringList()">Показать</button>
-                    <button class="success" onclick="showGetByIndexModal('string')">Получить по индексу</button>
-                    <button class="success" onclick="showAddByIndexModal('string')">Добавить по индексу</button>
-                    <button class="delete" onclick="clearStringList()">Очистить</button>
-                    <p id="stringListMessage"></p>
-                    <div id="stringListContainer" class="list-container hidden">
-                        <p>Список пуст</p>
-                    </div>
-                    <p id="stringListCountWrapper" class="hidden">Всего строк: <span id="stringListCount">0</span></p>
-                </div>
-
-                <!-- Список логических значений (List<Boolean>) -->
-                <div class="box">
-                    <h2>Список логических значений (List)</h2>
-                    <select id="booleanListInput">
-                        <option value="true">Да</option>
-                        <option value="false">Нет</option>
-                    </select>
-                    <button onclick="addBooleanToList()">Добавить</button>
-                    <button onclick="showBooleanList()">Показать</button>
-                    <button class="success" onclick="showGetByIndexModal('boolean')">Получить по индексу</button>
-                    <button class="success" onclick="showAddByIndexModal('boolean')">Добавить по индексу</button>
-                    <button class="delete" onclick="clearBooleanList()">Очистить</button>
-                    <p id="booleanListMessage"></p>
-                    <div id="booleanListContainer" class="list-container hidden">
-                        <p>Список пуст</p>
-                    </div>
-                    <p id="booleanListCountWrapper" class="hidden">Всего значений: <span id="booleanListCount">0</span></p>
-                </div>
+            
+            <div class="lab-card disabled">
+                <div class="lab-number">03</div>
+                <div class="lab-title">Лабораторная работа №3</div>
+                <div class="lab-description">Скоро будет доступна</div>
             </div>
-
+            
+            <div class="lab-card disabled">
+                <div class="lab-number">04</div>
+                <div class="lab-title">Лабораторная работа №4</div>
+                <div class="lab-description">Скоро будет доступна</div>
+            </div>
         </div>
     </div>
-
-    <!-- Модальное окно для получения элемента по индексу -->
-    <div id="getIndexModal" class="modal">
-        <div class="modal-content">
-            <h3>Получить элемент по индексу</h3>
-            <input type="number" id="getIndexInput" placeholder="Введите индекс" min="0">
-            <div class="modal-buttons">
-                <button onclick="getElementByIndex()">Получить</button>
-                <button onclick="closeGetIndexModal()">Отмена</button>
-            </div>
-            <p id="getIndexResult" style="margin-top: 10px; color: #2196F3;"></p>
-        </div>
-    </div>
-
-    <!-- Модальное окно для добавления элемента по индексу -->
-    <div id="addIndexModal" class="modal">
-        <div class="modal-content">
-            <h3>Добавить элемент по индексу</h3>
-            <input type="number" id="addIndexInput" placeholder="Введите индекс" min="0">
-            <input type="text" id="addIndexValue" placeholder="Введите значение">
-            <div class="modal-buttons">
-                <button onclick="addElementByIndex()">Добавить</button>
-                <button onclick="closeAddIndexModal()">Отмена</button>
-            </div>
-            <p id="addIndexResult" style="margin-top: 10px; color: #2196F3;"></p>
-        </div>
-    </div>
-
-    <!-- Подключаем файл со скриптами -->
-    <script src="script.js"></script>
 </body>
 </html>

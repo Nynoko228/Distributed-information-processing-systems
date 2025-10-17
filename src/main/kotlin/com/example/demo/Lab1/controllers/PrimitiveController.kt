@@ -1,11 +1,11 @@
-package com.example.demo.controllers
+package com.example.demo.Lab1.controllers
 
-import com.example.demo.models.*
+import com.example.demo.Lab1.models.*
 import org.springframework.web.bind.annotation.*
 
 // Контроллер для работы с примитивными типами данных
 @RestController
-@RequestMapping("/api/primitives")
+@RequestMapping("/lab1/primitives")
 class PrimitiveController {
 
     // Хранилище для примитивных значений в памяти

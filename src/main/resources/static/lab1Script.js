@@ -1,5 +1,5 @@
-// Адрес нашего API
-const API = '/api';
+// Адрес нашего API для лабораторной работы №1
+const LABS = '/lab1';
 
 // Переменная для хранения текущего типа коллекции при работе с индексами
 let currentCollectionType = '';
@@ -14,7 +14,7 @@ function saveNumber() {
         alert('Пожалуйста, введите число!');
         return;
     }
-    fetch(API + '/primitives/number', {
+    fetch(LABS + '/primitives/number', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ value: parseInt(number) })
@@ -28,7 +28,7 @@ function saveNumber() {
 }
 
 function showNumber() {
-    fetch(API + '/primitives/number')
+    fetch(LABS + '/primitives/number')
     .then(response => response.json())
     .then(data => {
         const resultElement = document.getElementById('numberResult');
@@ -44,7 +44,7 @@ function saveText() {
         alert('Пожалуйста, введите текст!');
         return;
     }
-    fetch(API + '/primitives/string', {
+    fetch(LABS + '/primitives/string', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ value: text })
@@ -58,7 +58,7 @@ function saveText() {
 }
 
 function showText() {
-    fetch(API + '/primitives/string')
+    fetch(LABS + '/primitives/string')
     .then(response => response.json())
     .then(data => {
         const resultElement = document.getElementById('textResult');
@@ -71,7 +71,7 @@ function showText() {
 function saveBoolean() {
     const value = document.getElementById('booleanInput').value;
     const boolValue = (value === 'true');
-    fetch(API + '/primitives/boolean', {
+    fetch(LABS + '/primitives/boolean', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ value: boolValue })
@@ -84,7 +84,7 @@ function saveBoolean() {
 }
 
 function showBoolean() {
-    fetch(API + '/primitives/boolean')
+    fetch(LABS + '/primitives/boolean')
     .then(response => response.json())
     .then(data => {
         const resultElement = document.getElementById('booleanResult');
@@ -104,7 +104,7 @@ function addNumberToList() {
         alert('Пожалуйста, введите число!');
         return;
     }
-    fetch(API + '/collections/numbers', {
+    fetch(LABS + '/collections/numbers', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ value: parseInt(number) })
@@ -117,7 +117,7 @@ function addNumberToList() {
 }
 
 function showNumberList() {
-    fetch(API + '/collections/numbers')
+    fetch(LABS + '/collections/numbers')
     .then(response => response.json())
     .then(data => {
         const container = document.getElementById('numberListContainer');
@@ -140,7 +140,7 @@ function showNumberList() {
 
 function clearNumberList() {
     if (!confirm('Вы уверены, что хотите очистить список?')) return;
-    fetch(API + '/collections/numbers', { method: 'DELETE' })
+    fetch(LABS + '/collections/numbers', { method: 'DELETE' })
     .then(response => response.json())
     .then(data => {
         document.getElementById('numberListContainer').innerHTML = '<p>Список пуст</p>';
@@ -161,7 +161,7 @@ function addStringToList() {
         alert('Пожалуйста, введите текст!');
         return;
     }
-    fetch(API + '/collections/strings', {
+    fetch(LABS + '/collections/strings', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ value: text })
@@ -174,7 +174,7 @@ function addStringToList() {
 }
 
 function showStringList() {
-    fetch(API + '/collections/strings')
+    fetch(LABS + '/collections/strings')
     .then(response => response.json())
     .then(data => {
         const container = document.getElementById('stringListContainer');
@@ -197,7 +197,7 @@ function showStringList() {
 
 function clearStringList() {
     if (!confirm('Вы уверены, что хотите очистить список?')) return;
-    fetch(API + '/collections/strings', { method: 'DELETE' })
+    fetch(LABS + '/collections/strings', { method: 'DELETE' })
     .then(response => response.json())
     .then(data => {
         document.getElementById('stringListContainer').innerHTML = '<p>Список пуст</p>';
@@ -215,7 +215,7 @@ function clearStringList() {
 function addBooleanToList() {
     const value = document.getElementById('booleanListInput').value;
     const boolValue = (value === 'true');
-    fetch(API + '/collections/booleans', {
+    fetch(LABS + '/collections/booleans', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ value: boolValue })
@@ -226,7 +226,7 @@ function addBooleanToList() {
 }
 
 function showBooleanList() {
-    fetch(API + '/collections/booleans')
+    fetch(LABS + '/collections/booleans')
     .then(response => response.json())
     .then(data => {
         const container = document.getElementById('booleanListContainer');
@@ -250,7 +250,7 @@ function showBooleanList() {
 
 function clearBooleanList() {
     if (!confirm('Вы уверены, что хотите очистить список?')) return;
-    fetch(API + '/collections/booleans', { method: 'DELETE' })
+    fetch(LABS + '/collections/booleans', { method: 'DELETE' })
     .then(response => response.json())
     .then(data => {
         document.getElementById('booleanListContainer').innerHTML = '<p>Список пуст</p>';
@@ -283,7 +283,7 @@ function getElementByIndex() {
         return;
     }
     
-    const url = API + '/collections/' + (currentCollectionType === 'number' ? 'numbers' : 
+    const url = LABS + '/collections/' + (currentCollectionType === 'number' ? 'numbers' : 
                       currentCollectionType === 'string' ? 'strings' : 'booleans') + '/index/' + index;
     
     fetch(url)
@@ -342,7 +342,7 @@ function addElementByIndex() {
         return;
     }
     
-    const url = API + '/collections/' + (currentCollectionType === 'number' ? 'numbers' : 
+    const url = LABS + '/collections/' + (currentCollectionType === 'number' ? 'numbers' : 
                       currentCollectionType === 'string' ? 'strings' : 'booleans') + '/index';
     
     fetch(url, {
