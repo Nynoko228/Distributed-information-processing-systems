@@ -267,12 +267,14 @@ function clearBooleanList() {
 
 function showGetByIndexModal(type) {
     currentCollectionType = type;
-    document.getElementById('getIndexModal').style.display = 'block';
+    document.getElementById('getIndexModal').classList.add('active');
+    document.getElementById('getIndexModal').style.display = 'flex';
     document.getElementById('getIndexInput').value = '';
     document.getElementById('getIndexResult').textContent = '';
 }
 
 function closeGetIndexModal() {
+    document.getElementById('getIndexModal').classList.remove('active');
     document.getElementById('getIndexModal').style.display = 'none';
 }
 
@@ -305,7 +307,8 @@ function getElementByIndex() {
 
 function showAddByIndexModal(type) {
     currentCollectionType = type;
-    document.getElementById('addIndexModal').style.display = 'block';
+    document.getElementById('addIndexModal').classList.add('active');
+    document.getElementById('addIndexModal').style.display = 'flex';
     document.getElementById('addIndexInput').value = '';
     document.getElementById('addIndexValue').value = '';
     document.getElementById('addIndexResult').textContent = '';
@@ -325,6 +328,7 @@ function showAddByIndexModal(type) {
 }
 
 function closeAddIndexModal() {
+    document.getElementById('addIndexModal').classList.remove('active');
     document.getElementById('addIndexModal').style.display = 'none';
 }
 
