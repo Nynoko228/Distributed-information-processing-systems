@@ -21,6 +21,26 @@ class NumberListController {
         )
     }
 
+    // Метод для добавления числа в список по индексу
+    @PostMapping("/index")
+    fun addNumberAtIndex(@RequestBody request: AddAtIndexRequest): AddToCollectionResponse {
+        return try {
+            if (request.index < 0 || request.index > numberList.size) {
+                throw IndexOutOfBoundsException("Индекс вне диапазона")
+            }
+            numberList.add(request.index, request.value.toInt())
+            AddToCollectionResponse(
+                message = "Число добавлено по индексу ${request.index}",
+                totalItems = numberList.size
+            )
+        } catch (e: Exception) {
+            AddToCollectionResponse(
+                message = "Ошибка: ${e.message}",
+                totalItems = numberList.size
+            )
+        }
+    }
+
     // Метод для получения всех чисел из списка
     @GetMapping
     fun getNumbers(): NumberListResponse {
@@ -28,6 +48,27 @@ class NumberListController {
             numbers = numberList.toList(),
             count = numberList.size
         )
+    }
+
+    // Метод для получения числа по индексу
+    @GetMapping("/index/{index}")
+    fun getNumberAtIndex(@PathVariable index: Int): GetAtIndexResponse {
+        return try {
+            if (index < 0 || index >= numberList.size) {
+                throw IndexOutOfBoundsException("Индекс вне диапазона")
+            }
+            GetAtIndexResponse(
+                success = true,
+                value = numberList[index].toString(),
+                message = "Элемент найден"
+            )
+        } catch (e: Exception) {
+            GetAtIndexResponse(
+                success = false,
+                value = null,
+                message = "Ошибка: ${e.message}"
+            )
+        }
     }
 
     // Метод для очистки списка чисел

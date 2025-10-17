@@ -58,6 +58,8 @@
                     <input type="number" id="numberListInput" placeholder="Введите число">
                     <button onclick="addNumberToList()">Добавить</button>
                     <button onclick="showNumberList()">Показать</button>
+                    <button class="success" onclick="showGetByIndexModal('number')">Получить по индексу</button>
+                    <button class="success" onclick="showAddByIndexModal('number')">Добавить по индексу</button>
                     <button class="delete" onclick="clearNumberList()">Очистить</button>
                     <p id="numberListMessage"></p>
                     <div id="numberListContainer" class="list-container hidden">
@@ -66,38 +68,69 @@
                     <p id="numberListCountWrapper" class="hidden">Всего чисел: <span id="numberListCount">0</span></p>
                 </div>
 
-                <!-- Множество строк (Set<String>) -->
+                <!-- Список строк (List<String>) -->
                 <div class="box">
-                    <h2>Множество строк (Set)</h2>
-                    <input type="text" id="stringSetInput" placeholder="Введите текст">
-                    <button onclick="addStringToSet()">Добавить</button>
-                    <button onclick="showStringSet()">Показать</button>
-                    <button class="delete" onclick="clearStringSet()">Очистить</button>
-                    <p id="stringSetMessage"></p>
-                    <div id="stringSetContainer" class="list-container hidden">
-                        <p>Множество пусто</p>
+                    <h2>Список строк (List)</h2>
+                    <input type="text" id="stringListInput" placeholder="Введите текст">
+                    <button onclick="addStringToList()">Добавить</button>
+                    <button onclick="showStringList()">Показать</button>
+                    <button class="success" onclick="showGetByIndexModal('string')">Получить по индексу</button>
+                    <button class="success" onclick="showAddByIndexModal('string')">Добавить по индексу</button>
+                    <button class="delete" onclick="clearStringList()">Очистить</button>
+                    <p id="stringListMessage"></p>
+                    <div id="stringListContainer" class="list-container hidden">
+                        <p>Список пуст</p>
                     </div>
-                    <p id="stringSetCountWrapper" class="hidden">Всего строк: <span id="stringSetCount">0</span></p>
+                    <p id="stringListCountWrapper" class="hidden">Всего строк: <span id="stringListCount">0</span></p>
                 </div>
 
-                <!-- Словарь логических значений (Map<Boolean, Int>) -->
+                <!-- Список логических значений (List<Boolean>) -->
                 <div class="box">
-                    <h2>Словарь логических значений (Map)</h2>
-                    <select id="booleanMapInput">
+                    <h2>Список логических значений (List)</h2>
+                    <select id="booleanListInput">
                         <option value="true">Да</option>
                         <option value="false">Нет</option>
                     </select>
-                    <button onclick="addBooleanToMap()">Добавить</button>
-                    <button onclick="showBooleanMap()">Показать</button>
-                    <button class="delete" onclick="clearBooleanMap()">Очистить</button>
-                    <p id="booleanMapMessage"></p>
-                    <div id="booleanMapContainer" class="list-container hidden">
-                        <p>Словарь пустой</p>
+                    <button onclick="addBooleanToList()">Добавить</button>
+                    <button onclick="showBooleanList()">Показать</button>
+                    <button class="success" onclick="showGetByIndexModal('boolean')">Получить по индексу</button>
+                    <button class="success" onclick="showAddByIndexModal('boolean')">Добавить по индексу</button>
+                    <button class="delete" onclick="clearBooleanList()">Очистить</button>
+                    <p id="booleanListMessage"></p>
+                    <div id="booleanListContainer" class="list-container hidden">
+                        <p>Список пуст</p>
                     </div>
-                    <p id="booleanMapCountWrapper" class="hidden">Всего значений: <span id="booleanMapCount">0</span></p>
+                    <p id="booleanListCountWrapper" class="hidden">Всего значений: <span id="booleanListCount">0</span></p>
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <!-- Модальное окно для получения элемента по индексу -->
+    <div id="getIndexModal" class="modal">
+        <div class="modal-content">
+            <h3>Получить элемент по индексу</h3>
+            <input type="number" id="getIndexInput" placeholder="Введите индекс" min="0">
+            <div class="modal-buttons">
+                <button onclick="getElementByIndex()">Получить</button>
+                <button onclick="closeGetIndexModal()">Отмена</button>
+            </div>
+            <p id="getIndexResult" style="margin-top: 10px; color: #2196F3;"></p>
+        </div>
+    </div>
+
+    <!-- Модальное окно для добавления элемента по индексу -->
+    <div id="addIndexModal" class="modal">
+        <div class="modal-content">
+            <h3>Добавить элемент по индексу</h3>
+            <input type="number" id="addIndexInput" placeholder="Введите индекс" min="0">
+            <input type="text" id="addIndexValue" placeholder="Введите значение">
+            <div class="modal-buttons">
+                <button onclick="addElementByIndex()">Добавить</button>
+                <button onclick="closeAddIndexModal()">Отмена</button>
+            </div>
+            <p id="addIndexResult" style="margin-top: 10px; color: #2196F3;"></p>
         </div>
     </div>
 
