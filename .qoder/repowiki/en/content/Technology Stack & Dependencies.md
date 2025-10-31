@@ -2,10 +2,23 @@
 
 <cite>
 **Referenced Files in This Document**   
-- [build.gradle](file://build.gradle)
+- [build.gradle](file://build.gradle) - *Updated with PostgreSQL and JPA dependencies*
 - [DemoApplication.kt](file://src/main/kotlin/com/example/demo/DemoApplication.kt)
 - [settings.gradle](file://settings.gradle)
+- [application.properties](file://src/main/resources/application.properties) - *Added PostgreSQL configuration*
+- [VideoGame.kt](file://src/main/kotlin/com/example/demo/Lab2/entities/VideoGame.kt) - *JPA entity with relationships*
+- [VideoGameRepository.kt](file://src/main/kotlin/com/example/demo/Lab2/repositories/VideoGameRepository.kt) - *Spring Data JPA repository*
+- [VideoGameService.kt](file://src/main/kotlin/com/example/demo/Lab2/services/VideoGameService.kt) - *Service with transaction management*
 </cite>
+
+## Update Summary
+**Changes Made**   
+- Added PostgreSQL and JPA dependency information
+- Updated key dependencies section with new database components
+- Added database configuration details
+- Enhanced dependency management strategy with persistence layer
+- Added new section on data persistence and JPA configuration
+- Updated version compatibility guidance for database components
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -15,9 +28,10 @@
 5. [Key Dependencies Analysis](#key-dependencies-analysis)
 6. [Java Toolchain and Runtime](#java-toolchain-and-runtime)
 7. [Dependency Management Strategy](#dependency-management-strategy)
-8. [Adding and Modifying Dependencies](#adding-and-modifying-dependencies)
-9. [Version Compatibility and Upgrade Guidance](#version-compatibility-and-upgrade-guidance)
-10. [Conclusion](#conclusion)
+8. [Data Persistence and JPA Configuration](#data-persistence-and-jpa-configuration)
+9. [Adding and Modifying Dependencies](#adding-and-modifying-dependencies)
+10. [Version Compatibility and Upgrade Guidance](#version-compatibility-and-upgrade-guidance)
+11. [Conclusion](#conclusion)
 
 ## Introduction
 This document provides a comprehensive analysis of the technology stack and dependency management system in the Spring Boot application. It details the foundational components including Spring Boot 3.5.6, Kotlin 1.9.25, and Gradle build configuration. The document explains the purpose of each dependency, the build setup, and provides guidance on managing dependencies effectively.
@@ -100,6 +114,12 @@ The application's dependency management is structured around several critical co
 
 - **spring-boot-starter-web**: Provides the foundation for building web applications with Spring MVC, including embedded Tomcat server, Spring Web, and related dependencies. This starter enables REST functionality and web endpoint creation.
 
+- **spring-boot-starter-data-jpa**: Integrates Spring Data JPA with Hibernate as the default JPA provider, enabling database persistence with minimal configuration. This dependency provides repository support, transaction management, and automatic CRUD operations.
+
+- **spring-boot-starter-validation**: Provides Bean Validation (JSR-380) support with Hibernate Validator, enabling declarative validation of request data and business objects.
+
+- **postgresql**: PostgreSQL JDBC driver for connecting to PostgreSQL databases in production environments.
+
 - **jackson-module-kotlin**: Extends Jackson JSON processor to support Kotlin-specific features such as data classes, default parameter values, and immutable properties. This module ensures proper serialization and deserialization of Kotlin objects in REST endpoints.
 
 - **kotlin-reflect**: Supplies reflection capabilities for Kotlin code, enabling frameworks to inspect and manipulate Kotlin classes, functions, and properties at runtime. This is crucial for Spring's dependency injection and AOP features when working with Kotlin code.
@@ -112,23 +132,32 @@ The application's dependency management is structured around several critical co
 graph TB
 subgraph "Core Dependencies"
 A[spring-boot-starter-web]
-B[jackson-module-kotlin]
-C[kotlin-reflect]
-D[spring-boot-devtools]
-E[spring-boot-starter-test]
+B[spring-boot-starter-data-jpa]
+C[spring-boot-starter-validation]
+D[postgresql]
+E[jackson-module-kotlin]
+F[kotlin-reflect]
+G[spring-boot-devtools]
+H[spring-boot-starter-test]
 end
 subgraph "Functionality"
-F[REST Endpoints]
-G[JSON Processing]
-H[Reflection Support]
-I[Dev Reloading]
-J[Unit Testing]
+I[REST Endpoints]
+J[Database Persistence]
+K[Data Validation]
+L[PostgreSQL Integration]
+M[JSON Processing]
+N[Reflection Support]
+O[Dev Reloading]
+P[Unit Testing]
 end
-A --> F
-B --> G
-C --> H
-D --> I
-E --> J
+A --> I
+B --> J
+C --> K
+D --> L
+E --> M
+F --> N
+G --> O
+H --> P
 ```
 
 **Diagram sources**
@@ -187,6 +216,97 @@ This approach promotes clean separation of concerns and prevents unnecessary dep
 - [build.gradle](file://build.gradle#L4-L4)
 - [build.gradle](file://build.gradle#L13-L19)
 
+## Data Persistence and JPA Configuration
+
+The application implements a robust data persistence layer using Spring Data JPA with PostgreSQL as the primary database. The configuration supports both production and testing environments with different database systems.
+
+### Database Configuration
+The application uses different databases for production and testing:
+- **Production**: PostgreSQL (configured in `src/main/resources/application.properties`)
+- **Testing**: H2 in-memory database (configured in `src/test/resources/application.properties`)
+
+### JPA Entity Design
+The application implements four main entities with proper relationships:
+- **VideoGame**: Main entity with relationships to Developer, Publisher, and Genre
+- **Developer**: Parent entity with one-to-many relationship to VideoGame
+- **Publisher**: Parent entity with one-to-many relationship to VideoGame  
+- **Genre**: Parent entity with one-to-many relationship to VideoGame
+
+### Key JPA Features Implemented
+- **Entity Relationships**: Properly configured ManyToOne and OneToMany relationships with appropriate fetch strategies
+- **Automatic Timestamps**: CreatedAt and UpdatedAt fields with automatic management
+- **Validation Constraints**: Database-level constraints (NOT NULL, UNIQUE, etc.)
+- **Cascade Management**: Controlled cascade operations to prevent accidental deletions
+
+### Configuration Properties
+```properties
+# Production configuration (application.properties)
+spring.datasource.url=jdbc:postgresql://localhost:5432/lab2_videogames
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# Test configuration (test/resources/application.properties)
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.jpa.hibernate.ddl-auto=create-drop
+```
+
+```mermaid
+classDiagram
+class VideoGame {
++Long id
++String title
++Integer releaseYear
++BigDecimal price
++LocalDateTime createdAt
++LocalDateTime updatedAt
+}
+class Developer {
++Long id
++String name
++String country
++Integer foundedYear
++VideoGame[] games
++LocalDateTime createdAt
++LocalDateTime updatedAt
+}
+class Publisher {
++Long id
++String name
++String country
++Integer foundedYear
++VideoGame[] games
++LocalDateTime createdAt
++LocalDateTime updatedAt
+}
+class Genre {
++Long id
++String name
++String description
++VideoGame[] games
++LocalDateTime createdAt
++LocalDateTime updatedAt
+}
+VideoGame --> Developer : ManyToOne
+VideoGame --> Publisher : ManyToOne
+VideoGame --> Genre : ManyToOne
+Developer --> VideoGame : OneToMany
+Publisher --> VideoGame : OneToMany
+Genre --> VideoGame : OneToMany
+```
+
+**Diagram sources**
+- [VideoGame.kt](file://src/main/kotlin/com/example/demo/Lab2/entities/VideoGame.kt#L9-L61)
+- [Developer.kt](file://src/main/kotlin/com/example/demo/Lab2/entities/Developer.kt#L8-L51)
+- [Publisher.kt](file://src/main/kotlin/com/example/demo/Lab2/entities/Publisher.kt#L8-L51)
+- [Genre.kt](file://src/main/kotlin/com/example/demo/Lab2/entities/Genre.kt#L8-L48)
+
+**Section sources**
+- [build.gradle](file://build.gradle#L14)
+- [application.properties](file://src/main/resources/application.properties#L1-L14)
+- [VideoGame.kt](file://src/main/kotlin/com/example/demo/Lab2/entities/VideoGame.kt#L9-L61)
+
 ## Adding and Modifying Dependencies
 
 To add new dependencies to the project, developers should follow these guidelines:
@@ -221,7 +341,9 @@ Maintaining version compatibility is critical for application stability. The fol
 
 3. **Java version compatibility**: Spring Boot 3.5.6 requires Java 17 or higher, with Java 21 recommended for optimal performance and feature availability.
 
-4. **Third-party library upgrades**: Always check compatibility matrices and release notes before upgrading non-managed dependencies.
+4. **Database driver compatibility**: Ensure PostgreSQL JDBC driver version compatibility with the database server version.
+
+5. **Third-party library upgrades**: Always check compatibility matrices and release notes before upgrading non-managed dependencies.
 
 Recommended upgrade procedure:
 1. Check the Spring Boot release notes for breaking changes

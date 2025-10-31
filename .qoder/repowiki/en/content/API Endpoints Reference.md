@@ -2,9 +2,9 @@
 
 <cite>
 **Referenced Files in This Document**   
-- [Controller.kt](file://src/main/kotlin/com/example/demo/controllers/Controller.kt)
-- [DemoApplication.kt](file://src/main/kotlin/com/example/demo/DemoApplication.kt)
-- [application.properties](file://src/main/resources/application.properties)
+- [HomeController.kt](file://src\main\kotlin\com\example\demo\controllers\Controller.kt)
+- [DemoApplication.kt](file://src\main\kotlin\com\example\demo\DemoApplication.kt)
+- [application.properties](file://src\main\resources\application.properties)
 - [build.gradle](file://build.gradle)
 </cite>
 
@@ -22,7 +22,7 @@
 This document provides comprehensive API documentation for the root endpoint (/) in a Spring Boot application implemented in Kotlin. The endpoint serves as a basic health check and welcome message, returning a plain text response. The application follows standard Spring Boot conventions with Kotlin integration and uses annotation-based routing for HTTP request handling.
 
 **Section sources**
-- [DemoApplication.kt](file://src/main/kotlin/com/example/demo/DemoApplication.kt#L1-L12)
+- [DemoApplication.kt](file://src\main\kotlin\com\example\demo\DemoApplication.kt#L1-L12)
 - [build.gradle](file://build.gradle#L1-L20)
 
 ## Root Endpoint Specification
@@ -41,7 +41,7 @@ The HomeController exposes a single GET endpoint at the root path (/). This endp
 The endpoint is designed to provide a basic confirmation that the application is running and accessible. It serves as a starting point for API interaction and can be used for health checks or service discovery.
 
 **Section sources**
-- [Controller.kt](file://src/main/kotlin/com/example/demo/controllers/Controller.kt#L5-L10)
+- [Controller.kt](file://src\main\kotlin\com\example\demo\controllers\Controller.kt#L5-L10)
 
 ## Implementation Details
 The root endpoint is implemented using Spring Boot's annotation-based controller pattern in Kotlin. The `HomeController` class is annotated with `@RestController`, which combines `@Controller` and `@ResponseBody` annotations, indicating that all handler methods return domain objects directly rather than view names.
@@ -62,10 +62,10 @@ HomeController : @GetMapping("/")
 ```
 
 **Diagram sources**
-- [Controller.kt](file://src/main/kotlin/com/example/demo/controllers/Controller.kt#L5-L10)
+- [Controller.kt](file://src\main\kotlin\com\example\demo\controllers\Controller.kt#L5-L10)
 
 **Section sources**
-- [Controller.kt](file://src/main/kotlin/com/example/demo/controllers/Controller.kt#L1-L12)
+- [Controller.kt](file://src\main\kotlin\com\example\demo\controllers\Controller.kt#L1-L12)
 
 ## Testing the Endpoint
 The root endpoint can be tested using various HTTP clients. Below are examples using curl commands:
@@ -93,8 +93,8 @@ Hello, Spring ssdsdsd
 The default port for Spring Boot applications is 8080, but this can be configured in the application.properties file or through environment variables.
 
 **Section sources**
-- [application.properties](file://src/main/resources/application.properties#L1-L2)
-- [Controller.kt](file://src/main/kotlin/com/example/demo/controllers/Controller.kt#L5-L10)
+- [application.properties](file://src\main\resources\application.properties#L1-L2)
+- [Controller.kt](file://src\main\kotlin\com\example\demo\controllers\Controller.kt#L5-L10)
 
 ## Error Handling
 The application relies on Spring Boot's default error handling mechanism. Since no custom error handlers are implemented, the framework provides built-in error responses for common HTTP error conditions.
@@ -121,11 +121,11 @@ Response-->>Client : 404 Not Found, JSON error details
 ```
 
 **Diagram sources**
-- [Controller.kt](file://src/main/kotlin/com/example/demo/controllers/Controller.kt#L5-L10)
+- [Controller.kt](file://src\main\kotlin\com\example\demo\controllers\Controller.kt#L5-L10)
 - [build.gradle](file://build.gradle#L30-L40)
 
 **Section sources**
-- [Controller.kt](file://src/main/kotlin/com/example/demo/controllers/Controller.kt#L5-L10)
+- [Controller.kt](file://src\main\kotlin\com\example\demo\controllers\Controller.kt#L5-L10)
 - [build.gradle](file://build.gradle#L30-L40)
 
 ## Customization and Extension
@@ -148,7 +148,7 @@ fun status() = mapOf("status" to "UP", "timestamp" to System.currentTimeMillis()
 This would expose a new endpoint at `/status` that returns JSON-formatted status information.
 
 **Section sources**
-- [Controller.kt](file://src/main/kotlin/com/example/demo/controllers/Controller.kt#L5-L10)
+- [Controller.kt](file://src\main\kotlin\com\example\demo\controllers\Controller.kt#L5-L10)
 
 ## Troubleshooting
 Common issues and their solutions:
@@ -175,9 +175,9 @@ Debugging steps:
 4. Use verbose logging with `--debug` flag during startup
 
 **Section sources**
-- [Controller.kt](file://src/main/kotlin/com/example/demo/controllers/Controller.kt#L1-L12)
-- [DemoApplication.kt](file://src/main/kotlin/com/example/demo/DemoApplication.kt#L1-L12)
-- [application.properties](file://src/main/resources/application.properties#L1-L2)
+- [Controller.kt](file://src\main\kotlin\com\example\demo\controllers\Controller.kt#L1-L12)
+- [DemoApplication.kt](file://src\main\kotlin\com\example\demo\DemoApplication.kt#L1-L12)
+- [application.properties](file://src\main\resources\application.properties#L1-L2)
 
 ## Security and Rate Limiting
 This basic template does not implement authentication or rate limiting for the root endpoint.
@@ -199,4 +199,4 @@ The current implementation is suitable for development and testing but requires 
 
 **Section sources**
 - [build.gradle](file://build.gradle#L30-L40)
-- [Controller.kt](file://src/main/kotlin/com/example/demo/controllers/Controller.kt#L5-L10)
+- [Controller.kt](file://src\main\kotlin\com\example\demo\controllers\Controller.kt#L5-L10)
